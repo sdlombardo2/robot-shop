@@ -8,47 +8,48 @@
     var someEvent = {
       type: "page-load",
       page_load_id: pageLoadId,
+      request_id: 123456,
       user_agent: window.navigator.userAgent,
 
-    // Capture how large the user has made their current window
-    window_height: window.innerHeight,
-    window_width: window.innerWidth,
+      // Capture how large the user has made their current window
+      window_height: window.innerHeight,
+      window_width: window.innerWidth,
 
-    // Capture how large the user's entire screen is
-    screen_height: window.screen && window.screen.height,
-    screen_width: window.screen && window.screen.width,
+      // Capture how large the user's entire screen is
+      screen_height: window.screen && window.screen.height,
+      screen_width: window.screen && window.screen.width,
 
-    // The shape of the current url, similar to collecting rail's controller +
-    // action, so we know which type of page the user was on. e.g.
-    // "/:team_slug/datasets/:dataset_slug/triggers"
-    path_shape: document.querySelector('meta[name=goji-path]').content,
+      // The shape of the current url, similar to collecting rail's controller +
+      // action, so we know which type of page the user was on. e.g.
+      // "/:team_slug/datasets/:dataset_slug/triggers"
+      path_shape: document.querySelector('meta[name=goji-path]').content,
 
-    // Chrome-only (for now) information on internet connection type (4g, wifi, etc.)
-    // https://developers.google.com/web/updates/2017/10/nic62
-    connection_type: navigator.connection && navigator.connection.type,
-    connection_type_effective: navigator.connection && navigator.connection.effectiveType,
-    connection_rtt: navigator.connection && navigator.connection.rtt,
+      // Chrome-only (for now) information on internet connection type (4g, wifi, etc.)
+      // https://developers.google.com/web/updates/2017/10/nic62
+      connection_type: navigator.connection && navigator.connection.type,
+      connection_type_effective: navigator.connection && navigator.connection.effectiveType,
+      connection_rtt: navigator.connection && navigator.connection.rtt,
 
-    // Navigation (page load) timings, transformed from timestamps into deltas
-    timing_unload_ms: nt.unloadEnd - nt.navigationStart,
-    timing_dns_end_ms: nt.domainLookupEnd - nt.navigationStart,
-    timing_ssl_end_ms: nt.connectEnd - nt.navigationStart,
-    timing_response_end_ms: nt.responseEnd - nt.navigationStart,
-    timing_dom_interactive_ms: nt.domInteractive - nt.navigationStart,
-    timing_dom_complete_ms: nt.domComplete - nt.navigationStart,
-    timing_dom_loaded_ms: nt.loadEventEnd - nt.navigationStart,
-    timing_ms_first_paint: nt.msFirstPaint - nt.navigationStart, // Nonstandard IE/Edge-only first paint
+      // Navigation (page load) timings, transformed from timestamps into deltas
+      timing_unload_ms: nt.unloadEnd - nt.navigationStart,
+      timing_dns_end_ms: nt.domainLookupEnd - nt.navigationStart,
+      timing_ssl_end_ms: nt.connectEnd - nt.navigationStart,
+      timing_response_end_ms: nt.responseEnd - nt.navigationStart,
+      timing_dom_interactive_ms: nt.domInteractive - nt.navigationStart,
+      timing_dom_complete_ms: nt.domComplete - nt.navigationStart,
+      timing_dom_loaded_ms: nt.loadEventEnd - nt.navigationStart,
+      timing_ms_first_paint: nt.msFirstPaint - nt.navigationStart, // Nonstandard IE/Edge-only first paint
 
-    // Some calculated navigation timing durations, for easier graphing in Honeycomb
-    // We could also use a derived column to do these calculations in the UI
-    // from the above fields if we wanted to keep our event payload smaller.
-    timing_dns_duration_ms: nt.domainLookupEnd - nt.domainLookupStart,
-    timing_ssl_duration_ms: nt.connectEnd - nt.connectStart,
-    timing_server_duration_ms: nt.responseEnd - nt.requestStart,
-    timing_dom_loaded_duration_ms: nt.loadEventEnd - nt.domComplete,
+      // Some calculated navigation timing durations, for easier graphing in Honeycomb
+      // We could also use a derived column to do these calculations in the UI
+      // from the above fields if we wanted to keep our event payload smaller.
+      timing_dns_duration_ms: nt.domainLookupEnd - nt.domainLookupStart,
+      timing_ssl_duration_ms: nt.connectEnd - nt.connectStart,
+      timing_server_duration_ms: nt.responseEnd - nt.requestStart,
+      timing_dom_loaded_duration_ms: nt.loadEventEnd - nt.domComplete,
 
-    // Entire page load duration
-    timing_total_duration_ms: nt.loadEventEnd - nt.connectStart,
+      // Entire page load duration
+      timing_total_duration_ms: nt.loadEventEnd - nt.connectStart,
     };
 
     var xhr = new XMLHttpRequest();
